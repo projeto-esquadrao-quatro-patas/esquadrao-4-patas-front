@@ -1,17 +1,91 @@
 <!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial com Vue.js</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/mdi@5.9.55/css/materialdesignicons.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            background-color: #ff575793; opacity: 60;
+            color: #ffffff;
+        }
+        .logo {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .logo img {
+            width: 120px; /* Defina o tamanho da sua logo conforme necessário */
+        }
+        .sidebar-item {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #555;
+        }
+        .sidebar-item span {
+            margin-left: 10px; /* Espaçamento entre o ícone e o texto */
+        }
+        .sidebar-item:hover {
+            background-color: #414bb2;
+            cursor: pointer;
+        }
+        .sidebar-content {
+            margin-left: 220px; /* Margem à esquerda para deixar espaço para o menu lateral */
+            padding: 20px;
+            background-color: #414ab273; /* Cor de fundo roxo claro */
+            color: #ffffff;
+            border-radius: 15px; /* Bordas arredondadas */
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="../src/assets/logo.png" alt="Logo da Minha Empresa" width="300" height="150">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Pesquisar...">
+        </div>
+        <div class="sidebar-item">
+            <i class="mdi mdi-home"></i> <!-- Ícone do Material Design Icons -->
+            <span @click="changeMenu('Menu principal')">Menu principal</span>
+        </div>
+        <div class="sidebar-item">
+            <i class="mdi mdi-paw"></i> <!-- Ícone do Material Design Icons -->
+            <span @click="changeMenu('Cadastrar animais')">Cadastrar animais</span>
+        </div>
+        <div class="sidebar-item">
+            <i class="mdi mdi-eye"></i> <!-- Ícone do Material Design Icons -->
+            <span @click="changeMenu('Visualizar animais')">Visualizar animais</span>
+        </div>
+        <div class="sidebar-item">
+            <i class="mdi mdi-file-document-outline"></i> <!-- Ícone do Material Design Icons -->
+            <span @click="changeMenu('Emitir relatório')">Emitir relatório</span>
+        </div>
+        <div class="sidebar-item">
+            <i class="mdi mdi-account"></i> <!-- Ícone do Material Design Icons -->
+            <span @click="changeMenu('Gerenciar usuário')">Gerenciar usuário</span>
+        </div>
+        <div class="sidebar-item">
+            <i class="mdi mdi-domain"></i> <!-- Ícone do Material Design Icons -->
+            <span @click="changeMenu('Gerenciar organização')">Gerenciar organização</span>
+        </div>
+    </div>
+    <div class="sidebar-content">
+        <h2>Sobre:</h2>
+        <p>O Esquadrão quatro patas é um grupo de protetores animais, sem fins lucrativos, que visa o acolhimento, tratamento, resgate e castração dos animais da Aldeia Condá, em Chapecó-SC.</p>
+        <p>Há cerca de 300 animais, entre cães e gatos abandonados, passando fome e frio, e constantemente em risco de vida por conta de atropelamentos, doenças e maus-tratos!</p>
+    </div>
+</body>
 </html>
