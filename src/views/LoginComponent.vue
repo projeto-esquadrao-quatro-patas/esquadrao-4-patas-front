@@ -37,9 +37,9 @@
           <a href="#" class="font-medium text-red-600 hover:text-red-500 block">
             Esqueceu a senha? Clique aqui!
           </a>
-          <a href="#" class="font-medium text-red-600 hover:text-red-500 block">
+          <router-link to="/cadastro-ong" class="font-medium text-red-600 hover:text-red-500 block">
             Cadastre sua conta!
-          </a>
+          </router-link>
         </div>
       </form>
     </div>
@@ -47,6 +47,8 @@
 </template>
 
 <script>
+import { API_BASE_URL } from '@/utils/apiConfig'
+
 export default {
   name: 'LoginComponent',
   data() {
@@ -60,50 +62,49 @@ export default {
     }
   },
   methods: {
-    methods: {
-      async login() {
-        this.loading = true;
-        this.errorMessage = '';
+    async login() {
+      this.loading = true;
+      this.errorMessage = '';
 
-        try {
-          const response = await fetch('http://127.0.0.1:8000/api/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-              deEmail: this.formData.email,
-              deSenha: this.formData.senha
-            })
-          });
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            deEmail: this.formData.email,
+            deSenha: this.formData.senha
+          })
+        });
 
-          const data = await response.json();
+        const data = await response.json();
 
-          if (!response.ok) {
-            throw {
-              status: response.status,
-              data: data
-            };
-          }
-
-          localStorage.setItem('token', data.token.token);
-
-          this.$router.push('/');
-
-        } catch (error) {
-          console.error('Erro no login:', error);
-
-          if (error.status === 401) {
-            this.errorMessage = 'Email ou senha incorretos';
-          } else if (error.data?.message) {
-            this.errorMessage = error.data.message;
-          } else {
-            this.errorMessage = 'Erro ao realizar login. Tente novamente.';
-          }
-        } finally {
-          this.loading = false;
+        if (!response.ok) {
+          throw {
+            status: response.status,
+            data: data
+          };
         }
+
+        localStorage.setItem('token', data.token.token);
+        localStorage.setItem('user', JSON.stringify(data.user || {}));
+
+        this.$router.push('/');
+
+      } catch (error) {
+        console.error('Erro no login:', error);
+
+        if (error.status === 401) {
+          this.errorMessage = 'Email ou senha incorretos';
+        } else if (error.data?.message) {
+          this.errorMessage = error.data.message;
+        } else {
+          this.errorMessage = 'Erro ao realizar login. Tente novamente.';
+        }
+      } finally {
+        this.loading = false;
       }
     }
   }

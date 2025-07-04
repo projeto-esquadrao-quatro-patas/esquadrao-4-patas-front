@@ -73,6 +73,11 @@
         <span>Gerenciar organização</span>
       </div>
     </router-link>
+
+    <div class="sidebar-item logout-item" @click="logout">
+      <i class="mdi mdi-logout"></i>
+      <span>Sair</span>
+    </div>
   </div>
 </template>
 
@@ -84,7 +89,13 @@ export default {
   setup() {
     const router = useRouter();
     
-    return { router };
+    const logout = () => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      router.push('/login');
+    };
+    
+    return { router, logout };
   }
 }
 </script>
@@ -102,7 +113,9 @@ export default {
 }
 
 .logo {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 20px 0;
 }
 
@@ -144,5 +157,14 @@ export default {
 
 .router-link-active .sidebar-item {
   background-color: rgba(65, 75, 178, 0.8);
+}
+
+.logout-item {
+  margin-top: auto;
+  background-color: rgba(255, 87, 87, 0.8);
+}
+
+.logout-item:hover {
+  background-color: rgba(255, 87, 87, 1);
 }
 </style>

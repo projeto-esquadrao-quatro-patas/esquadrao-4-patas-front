@@ -2,6 +2,7 @@ export async function fetchWithAuth(url, options = {}) {
     const token = localStorage.getItem('token')
     
     if (!token) {
+      localStorage.clear()
       window.location.href = '/login'
       return
     }
@@ -24,7 +25,7 @@ export async function fetchWithAuth(url, options = {}) {
     })
   
     if (response.status === 401) {
-      localStorage.removeItem('token')
+      localStorage.clear()
       window.location.href = '/login'
       return
     }
