@@ -53,13 +53,13 @@
     </router-link>
 
     <router-link 
-      to="/gerenciar-usuario" 
+      to="/gerenciar-usuarios" 
       custom
       v-slot="{ navigate }"
     >
       <div class="sidebar-item" @click="navigate" role="link">
         <i class="mdi mdi-account"></i>
-        <span>Gerenciar usuário</span>
+        <span>Gerenciar usuários</span>
       </div>
     </router-link>
 

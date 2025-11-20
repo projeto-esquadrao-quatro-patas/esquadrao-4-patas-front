@@ -43,7 +43,6 @@
 
       <div class="px-4 sm:px-6 lg:px-8 py-6">
         <div v-if="loading" class="flex justify-center items-center py-12">
-        <div v-if="loading" class="flex justify-center items-center py-12">
           <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-500"></div>
           <span class="ml-3 text-gray-600">Carregando animais...</span>
         </div>
@@ -63,7 +62,6 @@
         </div>
 
         <div v-else>
-          <div class="lg:hidden space-y-4">
           <div class="lg:hidden space-y-4">
             <div v-for="animal in filteredAnimals" :key="animal.idAnimal" 
                  class="bg-white rounded-lg shadow-sm border border-gray-200 p-4">

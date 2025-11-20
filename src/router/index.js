@@ -6,6 +6,8 @@ import CadastroAnimal from '../views/CadastroAnimal.vue';
 import EditarAnimal from '../views/EditarAnimal.vue';
 import VisualizarAnimais from '../views/VisualizarAnimais.vue';
 import GerenciarOrganizacao from '../views/GerenciarOrganizacao.vue';
+import GerenciarUsuarios from '../views/GerenciarUsuarios.vue';
+import CadastroUsuario from '../views/CadastroUsuario.vue';
 
 const routes = [
   {
@@ -46,6 +48,24 @@ const routes = [
     path: '/gerenciar-organizacao',
     name: 'GerenciarOrganizacao',
     component: GerenciarOrganizacao,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/gerenciar-usuarios',
+    name: 'GerenciarUsuarios',
+    component: GerenciarUsuarios,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/cadastro-usuario',
+    name: 'CadastroUsuario',
+    component: CadastroUsuario,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/editar-usuario/:id',
+    name: 'EditarUsuario',
+    component: CadastroUsuario,
     meta: { requiresAuth: true }
   },
   {
